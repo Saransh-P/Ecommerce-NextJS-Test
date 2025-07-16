@@ -149,9 +149,11 @@ export default function Header() {
                               ${totalPrice.toFixed(2)}
                             </span>
                           </div>
-                          <button className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                            View Cart & Checkout
-                          </button>
+                          <Link href="/cart">
+                            <button className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                              View Cart & Checkout
+                            </button>
+                          </Link>
                         </div>
                       </>
                     )}
@@ -220,13 +222,13 @@ export default function Header() {
         )}
       </div>
 
-      {/* Overlay for cart dropdown */}
-      {isCartOpen && (
+      {/* Overlay for cart dropdown - remove or reduce opacity */}
+      {/* {isCartOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-25 z-40"
           onClick={() => setIsCartOpen(false)}
         />
-      )}
+      )} */}
     </header>
   )
 }
