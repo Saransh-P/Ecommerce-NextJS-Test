@@ -1,6 +1,6 @@
 # 🛒 Modern E-Commerce Store
 
-**Live Demo:** [View Deployed Project](https://your-project-url.vercel.app)
+**Live Demo:** [View Deployed Project](https://ecommerce-next-js-test-upkv-bbefhz1tf-saransh-pathaks-projects.vercel.app)
 
 A modern, responsive e-commerce application built with Next.js 15, React 19, TypeScript, and Tailwind CSS. Features a complete shopping experience with product browsing, detailed product views, shopping cart functionality, and persistent cart state.
 
