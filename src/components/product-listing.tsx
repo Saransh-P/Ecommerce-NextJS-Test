@@ -5,7 +5,6 @@ import { useRouter, useSearchParams } from "next/navigation"
 import ProductCard from "./product-card"
 import ProductFilters from "./product-filters"
 import { products } from "@/lib/products-data"
-import type { Product } from "@/lib/types"
 
 // Main product listing component with filtering and search
 export default function ProductListing() {
