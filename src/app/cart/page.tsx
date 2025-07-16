@@ -7,11 +7,11 @@ import CartPage from "@/components/cart-page"
 export default function Cart() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Header />
+      </Suspense>
       <main className="container mx-auto px-4 py-6">
-        <Suspense fallback={<div>Loading...</div>}>
-          <CartPage />
-        </Suspense>
+        <CartPage />
       </main>
       <Footer />
     </div>
