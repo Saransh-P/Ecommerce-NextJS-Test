@@ -15,11 +15,14 @@ interface ProductCardProps {
 export default function ProductCard({ product, featured = false }: ProductCardProps) {
   const { addItem } = useCart()
   const [imageError, setImageError] = useState(false)
+  const [showAdded, setShowAdded] = useState(false)
 
   // Handle add to cart button click
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault() // Prevent navigation when clicking add to cart
     addItem(product)
+    setShowAdded(true)
+    setTimeout(() => setShowAdded(false), 2000) // Hide after 2 seconds
   }
 
   // Handle image error
@@ -68,13 +71,20 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
             <p className="text-blue-800 mb-4">{product.description}</p>
             <div className="flex items-center justify-between">
               <span className="text-2xl font-bold text-blue-900">${product.price}</span>
-              <button
-                onClick={handleAddToCart}
-                className="flex items-center bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                <ShoppingCart className="w-5 h-5 mr-2" />
-                Add to Cart
-              </button>
+              <div className="relative">
+                <button
+                  onClick={handleAddToCart}
+                  className="flex items-center bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  <ShoppingCart className="w-5 h-5 mr-2" />
+                  Add to Cart
+                </button>
+                {showAdded && (
+                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-1 bg-green-500 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+                    Added!
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -86,7 +96,7 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
       <Link href={`/product/${product.id}`}>
-        <div className="relative w-full h-48">
+        <div className="relative w-full h-56">
           <Image
             src={imageSrc}
             alt={product.title}
@@ -97,19 +107,26 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
           />
         </div>
       </Link>
-      <div className="p-4">
+      <div className="p-5">
         <Link href={`/product/${product.id}`}>
           <h3 className="font-semibold text-blue-900 mb-2 hover:text-blue-600 transition-colors">{product.title}</h3>
         </Link>
         <div className="flex items-center mb-2">{renderStars(product.rating)}</div>
         <div className="flex items-center justify-between">
           <span className="text-lg font-bold text-blue-900">${product.price}</span>
-          <button
-            onClick={handleAddToCart}
-            className="flex items-center bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            <ShoppingCart className="w-4 h-4" />
-          </button>
+          <div className="relative">
+            <button
+              onClick={handleAddToCart}
+              className="flex items-center bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              <ShoppingCart className="w-4 h-4" />
+            </button>
+            {showAdded && (
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-1 bg-green-500 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+                Added!
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -202,7 +202,8 @@ export default function Header() {
               
               <button
                 onClick={() => {
-                  setIsCartOpen(!isCartOpen)
+                  // On mobile, navigate directly to cart page
+                  router.push('/cart')
                   setIsMobileMenuOpen(false)
                 }}
                 className="flex items-center space-x-2 text-white hover:text-gray-300 transition-colors w-full"

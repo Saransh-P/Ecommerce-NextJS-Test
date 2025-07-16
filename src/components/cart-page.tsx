@@ -85,60 +85,63 @@ export default function CartPage() {
 
             <div className="space-y-4">
               {items.map((item) => (
-                <div key={item.product.id} className="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg">
-                  {/* Product Image */}
-                  <Link href={`/product/${item.product.id}`}>
-                    <Image
-                      src={item.product.image || "/placeholder.svg"}
-                      alt={item.product.title}
-                      width={80}
-                      height={80}
-                      className="w-20 h-20 object-cover rounded-lg hover:opacity-90 transition-opacity"
-                    />
-                  </Link>
-
-                  {/* Product Info */}
-                  <div className="flex-1 min-w-0">
+                <div key={item.product.id} className="flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 p-4 border border-gray-200 rounded-lg">
+                  {/* Product Image and Info - Mobile: stacked, Desktop: side by side */}
+                  <div className="flex items-center space-x-4 flex-1">
                     <Link href={`/product/${item.product.id}`}>
-                      <h3 className="font-semibold text-blue-900 hover:text-blue-600 transition-colors truncate">
-                        {item.product.title}
-                      </h3>
+                      <Image
+                        src={item.product.image || "/placeholder.svg"}
+                        alt={item.product.title}
+                        width={80}
+                        height={80}
+                        className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-lg hover:opacity-90 transition-opacity"
+                      />
                     </Link>
-                    <p className="text-blue-700 text-sm">{item.product.category}</p>
-                    <p className="text-lg font-bold text-blue-900">${item.product.price}</p>
+
+                    {/* Product Info */}
+                    <div className="flex-1 min-w-0">
+                      <Link href={`/product/${item.product.id}`}>
+                        <h3 className="font-semibold text-blue-900 hover:text-blue-600 transition-colors truncate text-sm sm:text-base">
+                          {item.product.title}
+                        </h3>
+                      </Link>
+                      <p className="text-blue-700 text-xs sm:text-sm">{item.product.category}</p>
+                      <p className="text-lg font-bold text-blue-900">${item.product.price}</p>
+                    </div>
                   </div>
 
-                  {/* Quantity Controls */}
-                  <div className="flex items-center space-x-2">
-                    <button
-                      onClick={() => handleQuantityChange(item.product.id, item.quantity - 1)}
-                      className="p-1 border border-gray-300 rounded hover:bg-gray-50 text-blue-900"
-                    >
-                      <Minus className="w-4 h-4" />
-                    </button>
-                    <span className="px-3 py-1 border border-gray-300 rounded min-w-[50px] text-center text-blue-900">
-                      {item.quantity}
-                    </span>
-                    <button
-                      onClick={() => handleQuantityChange(item.product.id, item.quantity + 1)}
-                      className="p-1 border border-gray-300 rounded hover:bg-gray-50 text-blue-900"
-                    >
-                      <Plus className="w-4 h-4" />
-                    </button>
-                  </div>
+                  {/* Quantity Controls and Total - Mobile: full width row, Desktop: inline */}
+                  <div className="flex items-center justify-between sm:justify-end sm:space-x-4">
+                    {/* Quantity Controls */}
+                    <div className="flex items-center space-x-2">
+                      <button
+                        onClick={() => handleQuantityChange(item.product.id, item.quantity - 1)}
+                        className="p-1 border border-gray-300 rounded hover:bg-gray-50 text-blue-900"
+                      >
+                        <Minus className="w-4 h-4" />
+                      </button>
+                      <span className="px-3 py-1 border border-gray-300 rounded min-w-[50px] text-center text-blue-900">
+                        {item.quantity}
+                      </span>
+                      <button
+                        onClick={() => handleQuantityChange(item.product.id, item.quantity + 1)}
+                        className="p-1 border border-gray-300 rounded hover:bg-gray-50 text-blue-900"
+                      >
+                        <Plus className="w-4 h-4" />
+                      </button>
+                    </div>
 
-                  {/* Item Total */}
-                  <div className="text-right">
-                    <p className="font-bold text-blue-900">${(item.product.price * item.quantity).toFixed(2)}</p>
+                    {/* Item Total and Remove Button */}
+                    <div className="flex items-center space-x-3">
+                      <p className="font-bold text-blue-900">${(item.product.price * item.quantity).toFixed(2)}</p>
+                      <button
+                        onClick={() => removeItem(item.product.id)}
+                        className="p-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded transition-colors"
+                      >
+                        <Trash2 className="w-5 h-5" />
+                      </button>
+                    </div>
                   </div>
-
-                  {/* Remove Button */}
-                  <button
-                    onClick={() => removeItem(item.product.id)}
-                    className="p-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded transition-colors"
-                  >
-                    <Trash2 className="w-5 h-5" />
-                  </button>
                 </div>
               ))}
             </div>
