@@ -1,30 +1,23 @@
+import { Suspense } from "react"
 import Header from "@/components/header"
+import ProductListing from "@/components/product-listing"
 import Footer from "@/components/footer"
-import ProductCard from "@/components/product-card"
-import { products } from "@/lib/products-data"
 
+// Home page component - main product listing page
 export default function Home() {
-  // Get the first product for testing
-  const sampleProduct = products[0]
-  
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-gray-50">
+      {/* Header with logo, search, and cart */}
       <Header />
-      <main className="container mx-auto px-4 py-6 flex-grow">
-        <h1 className="text-3xl font-bold text-center mb-8">Product Card Test</h1>
-        
-        <div className="mb-8">
-          <h2 className="text-xl font-semibold mb-4">Regular Product Card:</h2>
-          <div className="max-w-xs mx-auto">
-            <ProductCard product={sampleProduct} />
-          </div>
-        </div>
-        
-        <div className="mb-8">
-          <h2 className="text-xl font-semibold mb-4">Featured Product Card:</h2>
-          <ProductCard product={sampleProduct} featured={true} />
-        </div>
+
+      {/* Main content area with suspense for loading states */}
+      <main className="container mx-auto px-4 py-6">
+        <Suspense fallback={<div className="text-center py-8">Loading products...</div>}>
+          <ProductListing />
+        </Suspense>
       </main>
+
+      {/* Footer with links and social media */}
       <Footer />
     </div>
   )
