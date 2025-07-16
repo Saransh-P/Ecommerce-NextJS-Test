@@ -1,3 +1,4 @@
+// Shopping cart page component with cart items display and management
 "use client"
 
 import { useState } from "react"
@@ -6,17 +7,18 @@ import Link from "next/link"
 import { Minus, Plus, Trash2, ShoppingBag, ArrowLeft } from "lucide-react"
 import { useCart } from "@/lib/cart-context"
 
+// Main cart page component
 export default function CartPage() {
   const { items, updateQuantity, removeItem, clearCart } = useCart()
   const [isLoading, setIsLoading] = useState(false)
 
-  // Calculate totals
+  // Calculate cart totals
   const subtotal = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0)
   const shipping = subtotal > 100 ? 0 : 10 // Free shipping over $100
-  const tax = subtotal * 0.08 // 8% tax
+  const tax = subtotal * 0.08 // 8% tax rate
   const total = subtotal + shipping + tax
 
-  // Handle quantity update
+  // Handle quantity changes for cart items
   const handleQuantityChange = (id: string, newQuantity: number) => {
     if (newQuantity < 1) {
       removeItem(id)

@@ -1,3 +1,4 @@
+// Detailed product view component for individual product pages
 "use client"
 
 import { useState } from "react"
@@ -6,18 +7,19 @@ import { Star, Minus, Plus } from "lucide-react"
 import { useCart } from "@/lib/cart-context"
 import type { Product } from "@/lib/types"
 
-// Product detail page component
+// Props interface for product detail component
 interface ProductDetailProps {
   product: Product
 }
 
+// Product detail component with quantity selection and add to cart
 export default function ProductDetail({ product }: ProductDetailProps) {
   const { addItem } = useCart()
   const [quantity, setQuantity] = useState(1)
   const [selectedImage, setSelectedImage] = useState(0)
   const [showAdded, setShowAdded] = useState(false)
 
-  // Handle quantity changes
+  // Handle quantity increment/decrement
   const handleQuantityChange = (change: number) => {
     setQuantity(Math.max(1, quantity + change))
   }
@@ -28,7 +30,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
       addItem(product)
     }
     setShowAdded(true)
-    setTimeout(() => setShowAdded(false), 2000) // Hide after 2 seconds
+    setTimeout(() => setShowAdded(false), 2000) // Hide confirmation after 2 seconds
   }
 
   // Render star rating
