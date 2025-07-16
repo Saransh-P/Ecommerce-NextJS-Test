@@ -1,3 +1,4 @@
+import { Suspense } from "react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import CartPage from "@/components/cart-page"
@@ -8,7 +9,9 @@ export default function Cart() {
     <div className="min-h-screen bg-gray-50">
       <Header />
       <main className="container mx-auto px-4 py-6">
-        <CartPage />
+        <Suspense fallback={<div>Loading...</div>}>
+          <CartPage />
+        </Suspense>
       </main>
       <Footer />
     </div>
