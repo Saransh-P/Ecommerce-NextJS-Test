@@ -1,3 +1,4 @@
+// Product interface definition
 export interface Product {
   id: string
   title: string
@@ -8,6 +9,16 @@ export interface Product {
   rating: number
 }
 
-export interface CartItem extends Product {
+// Cart item interface (product with quantity)
+export interface CartItem {
+  product: Product
   quantity: number
+}
+
+// Filter interface for URL parameters
+export interface ProductFilters {
+  category?: string
+  minPrice?: number
+  maxPrice?: number
+  search?: string
 }
