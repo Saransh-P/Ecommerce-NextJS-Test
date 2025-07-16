@@ -1,4 +1,5 @@
 // Dynamic product detail page component
+import { Suspense } from "react"
 import { notFound } from "next/navigation"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
@@ -25,7 +26,9 @@ export default async function ProductPage({
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header component */}
-      <Header />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Header />
+      </Suspense>
       
       {/* Main content with product details */}
       <main className="container mx-auto px-4 py-6">
