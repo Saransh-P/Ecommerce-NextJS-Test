@@ -1,4 +1,6 @@
-// Product interface definition
+// TypeScript type definitions for the e-commerce application
+
+// Product interface - defines the structure of a product object
 export interface Product {
   id: string
   title: string
@@ -9,13 +11,13 @@ export interface Product {
   rating: number
 }
 
-// Cart item interface (product with quantity)
+// Cart item interface - product with quantity information
 export interface CartItem {
   product: Product
   quantity: number
 }
 
-// Filter interface for URL parameters
+// Filter interface for product filtering and search
 export interface ProductFilters {
   category?: string
   minPrice?: number

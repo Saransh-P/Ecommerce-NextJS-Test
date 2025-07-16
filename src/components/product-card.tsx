@@ -1,3 +1,4 @@
+// Product card component for displaying individual products in listings
 "use client"
 
 import { useState } from "react"
@@ -7,25 +8,27 @@ import { Star, ShoppingCart } from "lucide-react"
 import { useCart } from "@/lib/cart-context"
 import type { Product } from "@/lib/types"
 
+// Props interface for product card component
 interface ProductCardProps {
   product: Product
   featured?: boolean
 }
 
+// Product card component with add to cart functionality
 export default function ProductCard({ product, featured = false }: ProductCardProps) {
   const { addItem } = useCart()
   const [imageError, setImageError] = useState(false)
   const [showAdded, setShowAdded] = useState(false)
 
-  // Handle add to cart button click
+  // Handle add to cart button click (prevent navigation)
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault() // Prevent navigation when clicking add to cart
     addItem(product)
     setShowAdded(true)
-    setTimeout(() => setShowAdded(false), 2000) // Hide after 2 seconds
+    setTimeout(() => setShowAdded(false), 2000) // Hide confirmation after 2 seconds
   }
 
-  // Handle image error
+  // Handle image loading errors
   const handleImageError = () => {
     setImageError(true)
   }
