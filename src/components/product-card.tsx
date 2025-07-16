@@ -28,7 +28,7 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
   }
 
   // Get image source with fallback
-  const imageSrc = imageError ? "/images/placeholder.jpg" : product.image
+  const imageSrc = imageError ? "/images/placeholder.png" : product.image
 
   // Render star rating
   const renderStars = (rating: number) => {
@@ -60,14 +60,14 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
               {product.category}
             </div>
             <Link href={`/product/${product.id}`}>
-              <h2 className="text-2xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition-colors">
+              <h2 className="text-2xl font-bold text-blue-900 mb-3 hover:text-blue-600 transition-colors">
                 {product.title}
               </h2>
             </Link>
             <div className="flex items-center mb-3">{renderStars(product.rating)}</div>
-            <p className="text-gray-600 mb-4">{product.description}</p>
+            <p className="text-blue-800 mb-4">{product.description}</p>
             <div className="flex items-center justify-between">
-              <span className="text-2xl font-bold text-gray-900">${product.price}</span>
+              <span className="text-2xl font-bold text-blue-900">${product.price}</span>
               <button
                 onClick={handleAddToCart}
                 className="flex items-center bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
@@ -99,11 +99,11 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
       </Link>
       <div className="p-4">
         <Link href={`/product/${product.id}`}>
-          <h3 className="font-semibold text-gray-900 mb-2 hover:text-blue-600 transition-colors">{product.title}</h3>
+          <h3 className="font-semibold text-blue-900 mb-2 hover:text-blue-600 transition-colors">{product.title}</h3>
         </Link>
         <div className="flex items-center mb-2">{renderStars(product.rating)}</div>
         <div className="flex items-center justify-between">
-          <span className="text-lg font-bold text-gray-900">${product.price}</span>
+          <span className="text-lg font-bold text-blue-900">${product.price}</span>
           <button
             onClick={handleAddToCart}
             className="flex items-center bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition-colors"
