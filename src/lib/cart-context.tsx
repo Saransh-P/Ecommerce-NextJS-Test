@@ -36,7 +36,6 @@ export const useCart = () => useContext(CartContext)
 
 // Cart provider component
 export function CartProvider({ children }: { children: React.ReactNode }) {
-  // Initialize cart from localStorage if available
   const [items, setItems] = useState<CartItem[]>([])
   
   // Load cart from localStorage on mount

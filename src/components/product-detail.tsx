@@ -15,6 +15,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
   const { addItem } = useCart()
   const [quantity, setQuantity] = useState(1)
   const [selectedImage, setSelectedImage] = useState(0)
+  const [showAdded, setShowAdded] = useState(false)
 
   // Handle quantity changes
   const handleQuantityChange = (change: number) => {
@@ -26,6 +27,8 @@ export default function ProductDetail({ product }: ProductDetailProps) {
     for (let i = 0; i < quantity; i++) {
       addItem(product)
     }
+    setShowAdded(true)
+    setTimeout(() => setShowAdded(false), 2000) // Hide after 2 seconds
   }
 
   // Render star rating
@@ -124,12 +127,19 @@ export default function ProductDetail({ product }: ProductDetailProps) {
           </div>
 
           {/* Add to Cart Button */}
-          <button
-            onClick={handleAddToCart}
-            className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
-          >
-            Add to Cart
-          </button>
+          <div className="relative">
+            <button
+              onClick={handleAddToCart}
+              className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+            >
+              Add to Cart
+            </button>
+            {showAdded && (
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-green-500 text-white text-sm px-3 py-1 rounded whitespace-nowrap">
+                Added to cart!
+              </div>
+            )}
+          </div>
 
           {/* Reviews Section Placeholder */}
           <div className="border-t pt-6">
